@@ -22,7 +22,6 @@ alignment_set = {
     "CE": "Chaotic Evil"
 }
 
-
 def alignment_confirm():
 
     explain_alignment = input ("Next we will need to pick your alignment, would you like an explanation on alignments?: ").capitalize()
@@ -55,8 +54,14 @@ def info_input():
     user_name = input ("Hello there!  My name is Otto and I am very clever, I'm here to help you make a Dungeons & Dragons character!  Do not worry, I will walk you through step by step and do as much as I possibly can to ottomate the process.\nLet's start off easy, what is your characters name going to be? ").capitalize()
     global user_class
     user_class = input ("What class do you want to play?  This will dictate what your character can do in combat, how they interact with the monsters, and other various things.  I can assist with the following classes; \n" + str(classes)).capitalize()
+    print (("What kind of fantasy race are you interested in playing?  This will affect your stats in a small way, but also can change how your character may perceive the world, and how the world may view them, it can also grant you cool abilities\nbut we will touch on that later, for now I can assist with the following; ") + str(races))
+    race_explain = input ("Would you like Otto to quickly describe each fantasy race?").capitalize()
+    if race_explain == ("Yes"):
+        print("Dragonborn are a bipedal race of half dragon half people, it may be easiest to think of them as 'lizard people'.\n"  "Gnomes are short in height but big in spirit, they are often tied to nature and the fey and frequently dabble in mysticism.\n"  "Half Elfs are children of humanity and elf-kind, not as tall as elves but taller than most humans, typically slender & pointed ears though not as large as a full blooded elf, similar to the character 'Link' from the video game series 'The Legend of Zelda'.\n"  "Half Orcs are half orc and half human and are typically stronger than a human and smarter than an orc, while maintaining green or grey skin from their orc heritage, it may be best to think of an orc from 'The Lord of the Rings' series but with more brains and fairer skin.\n"  "Tieflings are typically a blue or purple hue skinned bipedial horned creature that otherwise maintains the shape of a human, Otto supposes they could be likened to a demon though this is technically not true and they would not appreciate such a comparison.\n"  "Humans are just like you, Otto hopes a further explaination is not needed.\n"  "Halflings are very similar to hobbits from the 'lord of the rings' series.  Elves are a tall, long eared slender race similar to Legolas from 'The Lord of the Rings'.\n"  "Dwarves are typically short and hardy, they are also similar to Gimli from 'The Lord of the Rings'.\n")
+    else:
+        print ("Ok")
     global user_race
-    user_race = input (("What kind of fantasy race are you interested in playing?  This will affect your stats in a small way, but also can change how your character may perceive the world, and how the world may view them, it can also grant you cool abilities\nbut we will touch on that later, for now I can assist with the following; ") + str(races)).capitalize()  # find a way to incorporate their stat alterations into player stats
+    user_race = input ("Please select your race: ").capitalize()  # find a way to incorporate their stat alterations into player stats
     global user_age
     user_age = input ("How old is your character going to be? ")
     user_info_loop = input ("Ok, so your character is " + user_name + " who is a " + user_age + " year old " + user_race + ", and they are a " + user_class + ", great choices so far!  Does everything look correct to you?").capitalize()
