@@ -1,3 +1,4 @@
+import os
 import random
 
 
@@ -105,8 +106,8 @@ class Character():
             info['char_race'] = _get_race()
             info['char_age'] = _get_age()
             keep_info = input(
-                 f"Ok, so your character is {info['char_name']} who is a {info['char_age']} year old {info['char_race']} and they are a {info['char_class']}. \
-                 Great choices so far! Does everything look correct to you?").capitalize()
+                 f"Ok, so your character is {info['char_name']} who is a {info['char_age']} year old {info['char_race']} and they are a {info['char_class']}.\n"
+                 f"Great choices so far! Does everything look correct to you?").capitalize()
             if keep_info.lower() in ["yes", "y"]:
                 gather_info = False
         info['char_stats'] = _generate_stats()
@@ -172,41 +173,43 @@ class Character():
 
 
 def _get_name():
-    return input(
-        """
-        Hello there! My name is Otto and I am very clever, 
-        I'm here to help you make a Dungeons & Dragons character!
-        Do not worry, I will walk you through step by step and do as much as I possibly can to ottomate the process.
-        Let's start off easy, what is your characters name going to be? 
-        """)
-
+    name = input(
+        "Hello there! My name is Otto and I am very clever.\n"
+        "I'm here to help you make a Dungeons & Dragons character!\n"
+        "Do not worry, I will walk you through step by step and do as much as I possibly can to ottomate the process.\n"
+        "Let's start off easy, what is your characters name going to be?\n")
+    clear()
+    return name
 
 def _get_age():
-    return input("How old is your character going to be? ")
+    age = input("How old is your character going to be?\n")
+    clear()
+    return age
+
 
 def _get_race():
-    print(f"""
-        What kind of fantasy race are you interested in playing?
-        This will affect your stats in a small way, but also can change how your character may perceive the world,
-        and how the world may view them, it can also grant you cool abilities. 
-        But we will touch on that later, for now I can assist with the following;
-        {Character._races}""")
+    print(
+        "What kind of fantasy race are you interested in playing?\n"
+        "This will affect your stats in a small way, but also can change how your character may perceive the world,\n"
+        "and how the world may view them, it can also grant you cool abilities.\n"
+        "But we will touch on that later, for now I can assist with the following:\n"
+        f"{Character._races}\n")
 
-    race_explain = input("Would you like Otto to quickly describe each fantasy race?")
+    race_explain = input("Would you like Otto to quickly describe each fantasy race?\n")
     if race_explain.lower() in ["yes", "y"]:
         print(
-            "Dragonborn are a bipedal race of half dragon half people, it may be easiest to think of them as 'lizard people'.\n\
-            Gnomes are short in height but big in spirit, they are often tied to nature and the fey and frequently dabble in mysticism.\n\
-            Half Elfs are children of humanity and elf-kind, not as tall as elves but taller than most humans, \
-            typically slender & pointed ears though not as large as a full blooded elf, similar to the character 'Link' from the video game \
-            series 'The Legend of Zelda'.\n"  "Half Orcs are half orc and half human and are typically stronger than a human and smarter than an orc, \
-            while maintaining green or grey skin from their orc heritage, it may be best to think of an orc from \
-            'The Lord of the Rings' series but with more brains and fairer skin.\n\
-            Tieflings are typically a blue or purple hue skinned bipedial horned creature that otherwise maintains the shape of a human, \
-            Otto supposes they could be likened to a demon though this is technically not true and they would not appreciate such a comparison.\n\
-            Humans are just like you, Otto hopes a further explaination is not needed.\n"  "Halflings are very similar to hobbits from the \
-            'lord of the rings' series.  Elves are a tall, long eared slender race similar to Legolas from 'The Lord of the Rings'.\n\
-            Dwarves are typically short and hardy, they are also similar to Gimli from 'The Lord of the Rings'.\n")
+            "Dragonborn are a bipedal race of half dragon half people, it may be easiest to think of them as 'lizard people'.\n"
+            "Gnomes are short in height but big in spirit, they are often tied to nature and the fey and frequently dabble in mysticism.\n"
+            "Half Elfs are children of humanity and elf-kind, not as tall as elves but taller than most humans,\n"
+            "typically slender & pointed ears though not as large as a full blooded elf, similar to the character 'Link' from the video game\n"
+            "series 'The Legend of Zelda'.\n"  "Half Orcs are half orc and half human and are typically stronger than a human and smarter than an orc,\n"
+            "while maintaining green or grey skin from their orc heritage, it may be best to think of an orc from\n"
+            "'The Lord of the Rings' series but with more brains and fairer skin.\n"
+            "Tieflings are typically a blue or purple hue skinned bipedial horned creature that otherwise maintains the shape of a human,\n"
+            "Otto supposes they could be likened to a demon though this is technically not true and they would not appreciate such a comparison.\n"
+            "Humans are just like you, Otto hopes a further explaination is not needed.\n"  "Halflings are very similar to hobbits from the\n"
+            "'lord of the rings' series.  Elves are a tall, long eared slender race similar to Legolas from 'The Lord of the Rings'.\n"
+            "Dwarves are typically short and hardy, they are also similar to Gimli from 'The Lord of the Rings'.\n")
     else:
         print("Ok")
 
@@ -217,12 +220,13 @@ def _get_race():
         if char_race in Character._races:
             valid_race = True
         else:
-            print(f"{char_race} is not a valid race. Let's try again.")
+            print(f"{char_race} is not a valid race. Let's try again.\n")
+    clear()
     return char_race
 
 
 def _get_alignment():
-    explain_alignment = input("Next we will need to pick your alignment, would you like an explanation on alignments?: ")
+    explain_alignment = input("Next we will need to pick your alignment, would you like an explanation on alignments?:\n")
     if explain_alignment.lower() in ["yes", "y"]:
         print("Lawful good is like a policeman, or for a high fantasy example, a paladin.")
         print("Neutral good is like a good citizen, they may not have a strong set of principles but they still do the right thing.")
@@ -238,20 +242,20 @@ def _get_alignment():
     character_alignment = None
     while(not character_alignment):
         user_alignment = input(
-            "Please enter your chosen alignment by typing the initials of the alignment you'd like, for example; Neutal/Neutral would be entered as NN: ").upper()
+            "Please enter your chosen alignment by typing the initials of the alignment you'd like, for example; Neutal/Neutral would be entered as NN:\n").upper()
         if user_alignment not in Character._alignments.keys():
-            print(f"Please only choose two letters for your chosen alignment.")
+            print("Please only choose two letters for your chosen alignment.")
         character_alignment = user_alignment
     return character_alignment
 
 
 def _generate_stats():
-    print(f"""
-        Next up is stat rolls. 
-        There are several different ways of doing this, but for simplicity sake, Otto will handle the rolling for you.
-        Do not worry, I am created to not give you any rolls that are too bad,
-        though you will likely have at least one or two below 10, this is not only normal, it's part of the fun.
-        Nobody's perfect, except for Otto of course.""")
+    print(
+        "Next up is stat rolls.\n"
+        "There are several different ways of doing this, but for simplicity sake, Otto will handle the rolling for you.\n"
+        "Do not worry, I am created to not give you any rolls that are too bad,\n"
+        "though you will likely have at least one or two below 10, this is not only normal, it's part of the fun.\n"
+        "Nobody's perfect, except for Otto of course.")
     stats = {
         'str': random.randint(7, 18),
         'dex': random.randint(7, 18),
@@ -262,40 +266,52 @@ def _generate_stats():
     }
 
     print(
-        f"""
-        {stats['str']} is your strength score, this is how physically strong you are 
-        and typically how much damage you will deal with a melee attack.""")
+        f"{stats['str']} is your strength score.\n"
+        "This is how physically strong you are, and typically how much damage you will deal with a melee attack.\n")
 
     print(
-        f"{stats['dex']} is your dexterity score, this is how nimble you are and can help you avoid traps, or shoot a bow.")
-
-    print(f"{stats['con']} is your constitution score, this dictates how physically resiliant you are.")
-
-    print(
-        f"""
-        {stats['int']} is your intelligence score, 
-        this represents how studied you are, for example, Otto has a 30 in intelligence, 
-        however a normal PC will never reach that high, as I am a highly advanced A.I.""")
+        f"{stats['dex']} is your dexterity score.\n"
+        "This is how nimble you are and can help you avoid traps, or shoot a bow.\n")
 
     print(
-        f"""
-        {stats['wis']} is your wisdom score, 
-        if intelligence is book smarts, wisdom is street smarts. Think of it like this,
-        intelligence is knowing a knife is sharp, wisdom is knowing the sharp side points away from you.""")
+        f"{stats['con']} is your constitution score.\n"
+        "This dictates how physically resiliant you are.\n")
 
-    print(f"{stats['cha']} is your charisma score, typically it's how likeable you are perceived to be.")
+    print(
+        f"{stats['int']} is your intelligence score.\n"
+        "This represents how studied you are. For example, Otto has a 30 in intelligence,\n" 
+        "however a normal PC will never reach that high, as I am a highly advanced A.I.\n")
+
+    print(
+        f"{stats['wis']} is your wisdom score.\n"
+        "If intelligence is book smarts, wisdom is street smarts.\n"
+        "Think of it like this, intelligence is knowing a knife is sharp, wisdom is knowing the sharp side points away from you.\n")
+
+    print(
+        f"{stats['cha']} is your charisma score.\n"
+        "Typically it's how likeable you are perceived to be.\n")
     return stats
 
 def _get_class():
-    return input(
-        f"What class do you want to play? \
-        This will dictate what your character can do in combat, \
-        how they interact with the monsters, and other various things. \
-        I can assist with the following classes;\n\
-        {Character._classes}").capitalize()
+    valid_class = False
+    while(not valid_class):
+        char_class = input(
+        "What class do you want to play?\n"
+        "This will dictate what your character can do in combat, how they interact with the monsters, and other various things.\n"
+        "I can assist with the following classes:\n"
+        f"{Character._classes}\n").capitalize()
+        if char_class not in Character._classes:
+            print("Please choose a valid class.")
+        else:
+            valid_class = True
+    clear()
+    return char_class
 
 def _get_level():
-    return int(input("What level is your campaign starting at? If unsure Otto suggests picking 1 for your level. "))
+    return int(input("What level is your campaign starting at? If unsure Otto suggests picking 1 for your level.\n"))
+
+def clear():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 if __name__ == "__main__":
     # execute only if run as a script
