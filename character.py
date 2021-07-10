@@ -3,7 +3,7 @@ import random
 
 
 class Character():
-
+    # Note: Should have classes/races and such be lower case and capitalize them when printing. Oh well.
     _alignments = {
         "LG": "Lawful Good",
         "NG": "Neutral Good",
@@ -27,7 +27,7 @@ class Character():
         "Rogue",
         "Sorcerer",
         "Warlock",
-        "Wizard."
+        "Wizard"
     ]
     _hit_dice = {
         'Sorcerer': 6,
@@ -48,8 +48,8 @@ class Character():
         'Dwarf',
         'Elf',
         'Gnome',
-        'Half Elf',
-        'Half Orc',
+        'Half elf',
+        'Half orc',
         'Halfling',
         'Human',
         'Tiefling'
@@ -57,8 +57,8 @@ class Character():
     _racial_move_speed = {
         "Dragonborn": 30,
         "Gnome": 25,
-        "Half Elf": 30,
-        "Half Orc": 30,
+        "Half elf": 30,
+        "Half orc": 30,
         "Tiefling": 30,
         "Human": 30,
         "Halfling": 25,
@@ -107,7 +107,7 @@ class Character():
             info['char_age'] = _get_age()
             keep_info = input(
                  f"Ok, so your character is {info['char_name']} who is a {info['char_age']} year old {info['char_race']} and they are a {info['char_class']}.\n"
-                 f"Great choices so far! Does everything look correct to you?").capitalize()
+                 f"Great choices so far! Does everything look correct to you?\n").capitalize()
             if keep_info.lower() in ["yes", "y"]:
                 gather_info = False
         info['char_stats'] = _generate_stats()
@@ -168,8 +168,6 @@ class Character():
             sheet.write(f"Intelligence saving throw = {self.int_save}\n")
             sheet.write(f"Wisdom saving throw = {self.wis_save}\n")
             sheet.write(f"Charisma saving throw = {self.cha_save}\n")
-    
-
 
 
 def _get_name():
@@ -198,18 +196,20 @@ def _get_race():
     race_explain = input("Would you like Otto to quickly describe each fantasy race?\n")
     if race_explain.lower() in ["yes", "y"]:
         print(
-            "Dragonborn are a bipedal race of half dragon half people, it may be easiest to think of them as 'lizard people'.\n"
-            "Gnomes are short in height but big in spirit, they are often tied to nature and the fey and frequently dabble in mysticism.\n"
+            "Dragonborn are a bipedal race of half dragon half people, it may be easiest to think of them as 'lizard people'.\n\n"
+            "Gnomes are short in height but big in spirit, they are often tied to nature and the fey and frequently dabble in mysticism.\n\n"
             "Half Elfs are children of humanity and elf-kind, not as tall as elves but taller than most humans,\n"
             "typically slender & pointed ears though not as large as a full blooded elf, similar to the character 'Link' from the video game\n"
-            "series 'The Legend of Zelda'.\n"  "Half Orcs are half orc and half human and are typically stronger than a human and smarter than an orc,\n"
+            "series 'The Legend of Zelda'.\n\n"  
+            "Half Orcs are half orc and half human and are typically stronger than a human and smarter than an orc,\n"
             "while maintaining green or grey skin from their orc heritage, it may be best to think of an orc from\n"
-            "'The Lord of the Rings' series but with more brains and fairer skin.\n"
-            "Tieflings are typically a blue or purple hue skinned bipedial horned creature that otherwise maintains the shape of a human,\n"
-            "Otto supposes they could be likened to a demon though this is technically not true and they would not appreciate such a comparison.\n"
-            "Humans are just like you, Otto hopes a further explaination is not needed.\n"  "Halflings are very similar to hobbits from the\n"
-            "'lord of the rings' series.  Elves are a tall, long eared slender race similar to Legolas from 'The Lord of the Rings'.\n"
-            "Dwarves are typically short and hardy, they are also similar to Gimli from 'The Lord of the Rings'.\n")
+            "'The Lord of the Rings' series but with more brains and fairer skin.\n\n"
+            "Tieflings are typically a blue or purple hue skinned bipedial horned creature that otherwise maintains the shape of a human.\n"
+            "Otto supposes they could be likened to a demon though this is technically not true and they would not appreciate such a comparison.\n\n"
+            "Humans are just like you, Otto hopes a further explaination is not needed.\n\n"
+            "Halflings are very similar to hobbits from the lord of the rings' series.\n\n"
+            "'Elves are a tall, long eared slender race similar to Legolas from 'The Lord of the Rings'.\n\n"
+            "Dwarves are typically short and hardy. They are similar to Gimli from 'The Lord of the Rings'.\n")
     else:
         print("Ok")
 
@@ -255,7 +255,7 @@ def _generate_stats():
         "There are several different ways of doing this, but for simplicity sake, Otto will handle the rolling for you.\n"
         "Do not worry, I am created to not give you any rolls that are too bad,\n"
         "though you will likely have at least one or two below 10, this is not only normal, it's part of the fun.\n"
-        "Nobody's perfect, except for Otto of course.")
+        "Nobody's perfect, except for Otto of course.\n")
     stats = {
         'str': random.randint(7, 18),
         'dex': random.randint(7, 18),
@@ -315,6 +315,7 @@ def clear():
 
 if __name__ == "__main__":
     # execute only if run as a script
+    clear()
     character_info = Character.gather_info()
     character = Character(**character_info)
     character.print_sheet()
